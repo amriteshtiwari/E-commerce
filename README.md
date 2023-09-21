@@ -1,7 +1,5 @@
 # Ruby on Rails E-Commerce Project
 A basic e-commerce web site built with rails framework and for front-end haml used with bootstrap, postgresql used for  the database service. 
-From beginning i created this project with this command line ( yarn & node should be installed in your system):
-- ```rails new RubyECommerce --css=bootstrap --database=postgresql```
 
 ### This project currently have these pages:
 - User login & register pages
@@ -53,6 +51,3 @@ From beginning i created this project with this command line ( yarn & node shoul
     - aws s3 bucket configured for this project.
     - docker for creating database service.
     - Docker-compoese may used for dockerizing the project.
-
-* Deployment instructions
-    - ... will be updated.
