@@ -163,8 +163,8 @@ ALTER SEQUENCE public.baskets_id_seq OWNED BY public.baskets.id;
 CREATE TABLE public.comments (
     id bigint NOT NULL,
     body text,
-    product_id integer,
-    user_id integer,
+    user_id bigint NOT NULL,
+    product_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -592,6 +592,20 @@ CREATE INDEX index_baskets_on_user_id ON public.baskets USING btree (user_id);
 
 
 --
+-- Name: index_comments_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_product_id ON public.comments USING btree (product_id);
+
+
+--
+-- Name: index_comments_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_user_id ON public.comments USING btree (user_id);
+
+
+--
 -- Name: index_orders_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -648,6 +662,14 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: comments fk_rails_03de2dc08c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_03de2dc08c FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: replies fk_rails_256e4b72c5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -669,6 +691,14 @@ ALTER TABLE ONLY public.baskets
 
 ALTER TABLE ONLY public.active_storage_variant_records
     ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- Name: comments fk_rails_a0d280f6e4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_a0d280f6e4 FOREIGN KEY (product_id) REFERENCES public.products(id);
 
 
 --
@@ -728,7 +758,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230123142401'),
 ('20230131144324'),
 ('20230210065629'),
-('20230210070438'),
 ('20230210080620');
 
 
