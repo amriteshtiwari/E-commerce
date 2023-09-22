@@ -158,3 +158,4 @@ user.save
 
 p "Created #{User.all.count} Users"
 p "Login as a user with these credentials: email: joe@gmail.com , password: 123456"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
