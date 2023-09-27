@@ -48,14 +48,15 @@
   .row
     - @products.each do |item|
       .card{style: "width: 18rem;"}
-        %img.card-img-top{alt: "...", src: item.images[0],}
-        .card-body
-          %h5.card-title #{item.title}
-          %p.card-text #{item.description}
-          = link_to "#{item.price}$", home_path(:id => item.id), class: 'btn btn-primary'
-          = button_to  basket_url(:id => item.id), class: 'btn btn-info' do
-            %i.bi.bi-bag-plus-fill
-              Add to basket
+        %a{href: url_for(item.images[0])}
+          %img.card-img-top{alt: "...", src: item.images[0],}
+          .card-body
+            %h5.card-title #{item.title}
+            %p.card-text #{item.description}
+            = link_to "#{item.price}$", home_path(:id => item.id), class: 'btn btn-primary'
+            = button_to  basket_url(:id => item.id), class: 'btn btn-info' do
+              %i.bi.bi-bag-plus-fill
+                Add to basket
 
     != pagy_bootstrap_nav(@pagy)
 
